@@ -4,13 +4,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build ",
     "lint": "eslint src --ext .ts --fix",
     "test": "vitest run --dir src/use-cases",
     "test:watch": "vitest --dir src/use-cases"
   },
   "keywords": [],
   "author": "Jackson dos Santos Moura",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "@rocketseat/eslint-config": "1.2.0",
