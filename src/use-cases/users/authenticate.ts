@@ -1,6 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { User } from '@prisma/client'
-import { ResourceNotFound } from '../errors/resource-not-found-error'
+import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 import { compare } from 'bcryptjs'
 
 interface AuthenticateRequest {
@@ -21,13 +21,13 @@ export class AuthenticateUserUseCase {
     const user = await this.usersRepository.findByEmail(email)
 
     if (!user) {
-      throw new ResourceNotFound()
+      throw new InvalidCredentialsError()
     }
 
     const doesPasswordExists = await compare(password, user.password_hash)
 
     if (!doesPasswordExists) {
-      throw new ResourceNotFound()
+      throw new InvalidCredentialsError()
     }
 
     return {

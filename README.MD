@@ -3,7 +3,7 @@
 ## FRs (Functional rules)
 
 - [x] It should be possible to register(students/instructors);
-- [ ] It should be able to login in the  application;
+- [x] It should be able to login in the  application;
 - [ ] Students should be able to view available daily workouts;
 - [ ] Instructors must be able to create, update, and delete workouts;
 - [ ] Instructors should be able to add drills to workouts;
