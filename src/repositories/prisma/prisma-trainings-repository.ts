@@ -10,4 +10,14 @@ export class PrismaTrainingsRepository implements TrainingsRepository {
 
     return newTraining
   }
+
+  async findById(id: string) {
+    const training = await prisma.training.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return training
+  }
 }

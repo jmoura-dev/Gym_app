@@ -18,4 +18,14 @@ export class InMemoryTrainingsRepository implements TrainingsRepository {
 
     return training
   }
+
+  async findById(id: string) {
+    const training = this.items.find((item) => item.id === id)
+
+    if (!training) {
+      return null
+    }
+
+    return training
+  }
 }
