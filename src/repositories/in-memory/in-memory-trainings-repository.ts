@@ -28,4 +28,27 @@ export class InMemoryTrainingsRepository implements TrainingsRepository {
 
     return training
   }
+
+  async findManyByUserId(userId: string) {
+    const trainings = this.items.filter((item) => item.user_id === userId)
+
+    return trainings
+  }
+
+  async deleteById(id: string) {
+    let index = -1
+
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].id === id) {
+        index = i
+        break
+      }
+    }
+
+    if (index !== -1) {
+      this.items.splice(index, 1)
+    } else {
+      console.log('Value not found.')
+    }
+  }
 }

@@ -26,13 +26,14 @@ describe('Get Training Use-Case', () => {
 
     const newTraining = await trainingsRepository.create({
       user_id: 'user-id',
+      name: 'Supino-reto',
     })
 
     const { training } = await sut.execute({
       id: newTraining.id,
     })
 
-    expect(training.id).toEqual(expect.any(String))
+    expect(training.name).toEqual('Supino-reto')
   })
 
   it('should not be able to get training without invalid id', async () => {

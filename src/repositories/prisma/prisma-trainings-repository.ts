@@ -16,8 +16,32 @@ export class PrismaTrainingsRepository implements TrainingsRepository {
       where: {
         id,
       },
+      include: {
+        exercises: true,
+      },
     })
 
     return training
+  }
+
+  async findManyByUserId(userId: string) {
+    const trainings = await prisma.training.findMany({
+      where: {
+        user_id: userId,
+      },
+      include: {
+        exercises: true,
+      },
+    })
+
+    return trainings
+  }
+
+  async deleteById(id: string) {
+    await prisma.training.delete({
+      where: {
+        id,
+      },
+    })
   }
 }
