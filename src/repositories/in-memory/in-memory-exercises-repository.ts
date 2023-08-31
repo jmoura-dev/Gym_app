@@ -20,4 +20,35 @@ export class InMemoryExercisesRepository implements ExerciseRepository {
 
     return exercise
   }
+
+  async findById(id: string) {
+    const exercise = this.items.find((item) => item.id === id)
+
+    if (!exercise) {
+      return null
+    }
+
+    return exercise
+  }
+
+  async delete(id: string) {
+    let index = -1
+
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].id === id) {
+        index = i
+        break
+      }
+    }
+
+    const exercise = this.items[index]
+
+    if (index !== -1) {
+      this.items.splice(index, 1)
+    } else {
+      console.log('Value not found.')
+    }
+
+    return exercise
+  }
 }

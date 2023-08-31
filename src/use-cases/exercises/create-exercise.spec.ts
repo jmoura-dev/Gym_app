@@ -41,8 +41,6 @@ describe('Exercise Use Case', () => {
       },
     })
 
-    console.log(exercise)
-
     expect(exercise.name).toEqual('Supino-reto')
     expect(exercise.focus).toEqual('Superior-peito')
   })

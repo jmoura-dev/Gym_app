@@ -10,4 +10,23 @@ export class PrismaExerciseRepository implements ExerciseRepository {
 
     return exercise
   }
+
+  async findById(id: string) {
+    const exercise = await prisma.exercise.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return exercise
+  }
+
+  async delete(id: string) {
+    const exerciseDeleted = await prisma.exercise.delete({
+      where: {
+        id,
+      },
+    })
+    return exerciseDeleted
+  }
 }
