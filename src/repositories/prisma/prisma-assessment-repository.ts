@@ -10,4 +10,24 @@ export class PrismaAssessmentsRepository implements AssessmentsRepository {
 
     return assessment
   }
+
+  async findById(id: string) {
+    const assessment = await prisma.assessment.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return assessment
+  }
+
+  async fetchManyByUserId(userId: string) {
+    const assessments = await prisma.assessment.findMany({
+      where: {
+        user_id: userId,
+      },
+    })
+
+    return assessments
+  }
 }

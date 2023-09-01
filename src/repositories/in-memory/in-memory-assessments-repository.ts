@@ -24,4 +24,20 @@ export class InMemoryAssessmentsRepository implements AssessmentsRepository {
 
     return assessments
   }
+
+  async findById(id: string) {
+    const assessment = this.items.find((item) => item.id === id)
+
+    if (!assessment) {
+      return null
+    }
+
+    return assessment
+  }
+
+  async fetchManyByUserId(userId: string) {
+    const assessments = this.items.filter((item) => item.user_id === userId)
+
+    return assessments
+  }
 }

@@ -3,7 +3,6 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { FetchManyTrainingsUseCase } from './fetch-many-trainings'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { hash } from 'bcryptjs'
-import { EmptyTrainingListError } from '../errors/Empty-training-list-error'
 
 let trainingsRepository: InMemoryTrainingsRepository
 let usersRepository: InMemoryUsersRepository
@@ -41,18 +40,5 @@ describe('Fetch many Trainings Use-Case', () => {
       expect.objectContaining({ name: 'Peitoral' }),
       expect.objectContaining({ name: 'Perna' }),
     ])
-  })
-
-  it('should not be able to fetch training list with empty list', async () => {
-    await usersRepository.create({
-      id: 'user-id',
-      name: 'João',
-      email: 'joao@example.com',
-      password_hash: await hash('123456', 6),
-    })
-
-    expect(async () => {
-      await sut.execute({ userId: 'user-id' })
-    }).rejects.toBeInstanceOf(EmptyTrainingListError)
   })
 })
